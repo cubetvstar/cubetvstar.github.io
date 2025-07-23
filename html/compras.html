@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Mis Compras - CubeTV</title>
-  <link rel="stylesheet" href="../CSS/peliculasStilo.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/compras.css">
 </head>
 <body>
 
@@ -38,12 +39,13 @@
             <p><strong>Género:</strong> ${pelicula.genero}</p>
           </div>
         </div>
-        <a href="inicio.html" class="btn secundario">Volver al Inicio</a>
+        <a href="inicio.html" class="btn">Volver al Inicio</a>
       `;
     } else {
-      compras.innerHTML = `<p>No has comprado ninguna película aún.</p><a href="inicio.html" class="btn secundario">Volver al Inicio</a>`;
+      compras.innerHTML = `<p>No has comprado ninguna película aún.</p><a href="inicio.html" class="btn">Volver al Inicio</a>`;
     }
   </script>
 
 </body>
 </html>
+
