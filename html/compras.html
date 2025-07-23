@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis Compras - CubeTV</title>
+  <link rel="stylesheet" href="../CSS/peliculasStilo.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>🛒 Mis Películas Compradas</h1>
+    </header>
+
+    <main id="compras">
+      <p>Cargando tus películas compradas...</p>
+    </main>
+
+    <footer>
+      <p>© 2025 Películas Online - CubeTV</p>
+      <p>Hecho por Cube Studios</p>
+      <p>Contacto: +503 7890-1234</p>
+      <p>Envíanos tus comentarios a: contacto@cubetv.com</p>
+    </footer>
+  </div>
+
+  <script>
+    const compras = document.getElementById("compras");
+    const pelicula = JSON.parse(localStorage.getItem("peliculaComprada"));
+
+    if (pelicula) {
+      compras.innerHTML = `
+        <div class="pelicula">
+          <div class="info">
+            <h2>${pelicula.titulo}</h2>
+            <p><strong>Año:</strong> ${pelicula.año}</p>
+            <p><strong>Director:</strong> ${pelicula.director}</p>
+            <p><strong>Género:</strong> ${pelicula.genero}</p>
+          </div>
+        </div>
+        <a href="inicio.html" class="btn secundario">Volver al Inicio</a>
+      `;
+    } else {
+      compras.innerHTML = `<p>No has comprado ninguna película aún.</p><a href="inicio.html" class="btn secundario">Volver al Inicio</a>`;
+    }
+  </script>
+
+</body>
+</html>

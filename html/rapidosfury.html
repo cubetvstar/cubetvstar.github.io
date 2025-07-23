@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprar Película - Rápidos y Furiosos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/peliculasStilo.css">
+</head>
+<body>
+
+ 
+  <a href="inicio.html" class="btn-volver">← Volver</a>
+
+  
+  <a href="compras.html" class="carrito">🛒 <span id="contador">0</span></a>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>🎬 Comprar Película</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="pelicula">
+    <img src="../img/rapidos-y-furiososw.jpg" alt="Portada Rápidos y Furiosos" class="poster">
+
+    <div class="info">
+      <h2>Rápidos y Furiosos</h2>
+      <p><strong>Descripción:</strong> Carreras ilegales, acción en las calles y familia. El inicio de una saga llena de velocidad y adrenalina.</p>
+      <p><strong>Año:</strong> 2001</p>
+      <p><strong>Director:</strong> Rob Cohen</p>
+      <p><strong>Género:</strong> Acción, Crimen</p>
+      <p><strong>Duración:</strong> 1h 46min</p>
+      <p><strong>Precio:</strong> $4.99</p>
+
+      <button class="btn" id="botonCompra">Comprar</button>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>Contacto: +503 7890-1234</p>
+    <p>Envíanos tus comentarios a: contacto@cubetv.com</p>
+    <p>© 2025 Películas Online - CubeTv</p>
+    <p>Hecho por Cube Studios</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const botonCompra = document.getElementById("botonCompra");
+    const contador = document.getElementById("contador");
+
+    botonCompra.addEventListener("click", () => {
+      botonCompra.textContent = "Comprado";
+      botonCompra.disabled = true;
+      contador.textContent = "1";
+
+      localStorage.setItem("peliculaComprada", JSON.stringify({
+        titulo: "Rápidos y Furiosos",
+        año: "2001",
+        director: "Rob Cohen",
+        genero: "Acción, Crimen"
+      }));
+    });
+  </script>
+
+</body>
+</html>

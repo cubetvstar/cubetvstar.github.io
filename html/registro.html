@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - CubeTV</title>
+  <link rel="stylesheet" href="../CSS/correoelectronico.css">
+</head>
+<body>
+  <header>
+    <h1>🎬 Películas Online</h1>
+  </header>
+
+  <div class="container">
+    <h2>Crear Cuenta</h2>
+    <form id="registroForm">
+      <input type="text" id="usuario" placeholder="Usuario" required>
+      <input type="password" id="clave" placeholder="Contraseña" required>
+      <button type="submit">Registrarse</button>
+    </form>
+    <p>¿Ya tienes una cuenta? <a href="iniciarsesion.html">Inicia sesión</a></p>
+  </div>
+
+  <footer>
+    <p>© 2025 Películas Online - CubeTv</p>
+    <p>Hecho por Cube Studios</p>
+    <p>Contacto: +503 7890-1234</p>
+  </footer>
+
+  <script>
+    document.getElementById('registroForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('usuario').value;
+      const pass = document.getElementById('clave').value;
+      localStorage.setItem('usuarioRegistrado', user);
+      localStorage.setItem('claveRegistrada', pass);
+      alert('¡Registro exitoso! Ahora inicia sesión.');
+      window.location.href = 'iniciarsesion.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Página de Películas</title>
+  <link rel="stylesheet" href="../CSS/cubestilo.css">
+</head>
+<body>
+
+  <header>
+     <div class="logo">
+      <img src="../img/cubotvlogo.png" alt="Logo CUBE TV" />
+     
+    </div>
+    <a href="perfil.html" class="btn-perfil">
+  <img id="fotoMenu" src="img/default-user.png" alt="Perfil">
+</a>
+
+    <h1>🎬 Películas Online</h1>
+    <nav>
+      <ul>
+        <li><a href="inicio.html">Inicio</a></li>
+        <li><a href="Familiar.html">Familiar</a></li>
+        <li><a href="accion.html">Acción</a></li>
+        <li><a href="anime.html">Animación</a></li>
+      </ul>
+    </nav>
+  </header>
+
+   <div class="contenedor-peliculas">
+    <a href="raid.html"><div class="pelicula"><img src="../img/raid.jpg" alt="TheRaidRedemption " /></div></a>
+    <a href="rampage.html"><div class="pelicula"><img src="../img/proyecto-rampagne-peliculas-mas-vistas-durante-la-cuarentena.jpg" alt="Rampage" /></div></a>
+    <a href="fury.html"><div class="pelicula"><img src="../img/corazonacero.jpg" alt="Fury" /></div></a>
+    <a href="SquidGame.html"><div class="pelicula"><img src="../img/el-juego-del-caalmar.jpg" alt="SquidGame" /></div></a>
+   <a href="topgun.html"> <div class="pelicula"><img src="../img/topgu.jpg" alt="TopGunMaverick" /></div></a>
+    <a href="rapidosfury.html"><div class="pelicula"><img src="../img/rapidos-y-furiososw.jpg" alt="Aventura" /></div></a>
+    <a href="terminator2.html"><div class="pelicula"><img src="../img/terminator2.jpg" alt="terminator2" /></div></a>
+    <a href="thedark.html"><div class="pelicula"><img src="../img/thedark.jpg" alt="thedark" /></div></a>
+    <a href="gladiador.html"><div class="pelicula"><img src="../img/gladiador.jpg" alt="Gladiador" /></div></a>
+       <a href="imposiblemision.html"><div class="pelicula"><img src="../img/misionimposible.jpg" alt="MisiónImposibleFallout" /></div></a>
+    <a href="estraction.html"><div class="pelicula"><img src="../img/extraccion.jpg" alt="Extraction" /></div></a>
+    <a href="madmax.html"><div class="pelicula"><img src="../img/madmax.jpg" alt="MadMaxFuryRoad" /></div></a>
+       <a href="jonwik.html"><div class="pelicula"><img src="../img/jonwik.jpg" alt="John Wick" /></div></a>
+         <a href="Elio.html"><div class="pelicula"><img src="../img/elio.jpg" alt="Elio" /></div></a>
+    <a href="intensamente2.html"><div class="pelicula"><img src="../img/intensamente.jpg" alt="Intensamente 2" /></div></a>
+    <a href="durodematar.html"><div class="pelicula"><img src="../img/duro.jpg" alt="durodematar" /></div></a>
+     <a href="oldboy.html"><div class="pelicula"><img src="../img/oldboy.jpg" alt="oldboy" /></div></a>
+      <a href="taken.html"><div class="pelicula"><img src="../img/taken.jpg" alt="Taken " /></div></a>
+    <a href="justiciero.html"><div class="pelicula"><img src="../img/equalizer.jpg" alt="equalizer " /></div></a>
+  </div>
+
+
+
+
+  <footer>
+  <p>© 2025 Películas Online - CubeTv</p>
+  <p>Hecho por Cube Studios</p>
+</footer>
+
+  <script src="script.js"></script>
+
+</body>
+<script>
+  window.onload = function () {
+    const foto = localStorage.getItem('fotoPerfil');
+    if (foto) {
+      document.getElementById('fotoMenu').src = foto;
+    }
+  };
+</script>
+
+</html>

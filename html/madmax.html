@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprar Película - Mad Max: Fury Road</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/peliculasStilo.css">
+</head>
+<body>
+
+  <a href="inicio.html" class="btn-volver">← Volver</a>
+  <a href="compras.html" class="carrito">🛒 <span id="contador">0</span></a>
+
+  <header>
+    <h1>🎬 Comprar Película</h1>
+  </header>
+
+  <main class="pelicula">
+    <img src="../img/madmax.jpg" alt="Portada Mad Max: Fury Road" class="poster">
+    <div class="info">
+      <h2>Mad Max: Fury Road</h2>
+      <p><strong>Descripción:</strong> Carreras postapocalípticas y visuales impactantes en un mundo desértico lleno de caos.</p>
+      <p><strong>Año:</strong> 2015</p>
+      <p><strong>Director:</strong> George Miller</p>
+      <p><strong>Género:</strong> Acción, Ciencia ficción</p>
+      <p><strong>Duración:</strong> 2h</p>
+      <p><strong>Precio:</strong> $4.99</p>
+      <button class="btn" id="botonCompra">Comprar</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>Contacto: +503 7890-1234</p>
+    <p>Envíanos tus comentarios a: contacto@cubetv.com</p>
+    <p>© 2025 Películas Online - CubeTv</p>
+    <p>Hecho por Cube Studios</p>
+  </footer>
+
+  <script>
+    const botonCompra = document.getElementById("botonCompra");
+    const contador = document.getElementById("contador");
+
+    botonCompra.addEventListener("click", () => {
+      botonCompra.textContent = "Comprado";
+      botonCompra.disabled = true;
+      contador.textContent = "1";
+
+      localStorage.setItem("peliculaComprada", JSON.stringify({
+        titulo: "Mad Max: Fury Road",
+        año: "2015",
+        director: "George Miller",
+        genero: "Acción, Ciencia ficción"
+      }));
+    });
+  </script>
+
+</body>
+</html>

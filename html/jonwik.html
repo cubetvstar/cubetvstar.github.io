@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprar Película - John Wick</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/peliculasStilo.css">
+</head>
+<body>
+
+  <!-- Botón Volver -->
+  <a href="inicio.html" class="btn-volver">← Volver</a>
+
+  <!-- Carrito de compras -->
+  <a href="compras.html" class="carrito">🛒 <span id="contador">0</span></a>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>🎬 Comprar Película</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="pelicula">
+    <img src="../img/jonwik.jpg" alt="Portada John Wick" class="poster">
+
+    <div class="info">
+      <h2>John Wick</h2>
+      <p><strong>Descripción:</strong> Venganza, artes marciales y disparos estilizados protagonizados por Keanu Reeves.</p>
+      <p><strong>Año:</strong> 2014</p>
+      <p><strong>Director:</strong> Chad Stahelski</p>
+      <p><strong>Género:</strong> Acción, Thriller</p>
+      <p><strong>Duración:</strong> 1h 41min</p>
+      <p><strong>Precio:</strong> $4.99</p>
+
+      <button class="btn" id="botonCompra">Comprar</button>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>Contacto: +503 7890-1234</p>
+    <p>Envíanos tus comentarios a: contacto@cubetv.com</p>
+    <p>© 2025 Películas Online - CubeTv</p>
+    <p>Hecho por Cube Studios</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const botonCompra = document.getElementById("botonCompra");
+    const contador = document.getElementById("contador");
+
+    botonCompra.addEventListener("click", () => {
+      botonCompra.textContent = "Comprado";
+      botonCompra.disabled = true;
+      contador.textContent = "1";
+
+      localStorage.setItem("peliculaComprada", JSON.stringify({
+        titulo: "John Wick",
+        año: "2014",
+        director: "Chad Stahelski",
+        genero: "Acción, Thriller"
+      }));
+    });
+  </script>
+
+</body>
+</html>
