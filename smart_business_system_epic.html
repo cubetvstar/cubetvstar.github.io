@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Business System — Interactive Presentation</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#030712;color:#f4f8ff;overflow-x:hidden}
+:root{--blue:#4da3ff;--cyan:#4ff0ff;--purple:#8b5cf6;--green:#38e39b;--muted:#9bb0cc;--panel:rgba(12,25,48,.68)}
+#space{position:fixed;inset:0;z-index:-3;background:
+radial-gradient(circle at 20% 15%,rgba(56,120,255,.22),transparent 28%),
+radial-gradient(circle at 80% 70%,rgba(139,92,246,.18),transparent 30%),
+linear-gradient(180deg,#030712,#06152b 55%,#020610)}
+#grid{position:fixed;inset:0;z-index:-2;opacity:.2;background-image:linear-gradient(rgba(77,163,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(77,163,255,.12) 1px,transparent 1px);background-size:60px 60px;mask-image:linear-gradient(to bottom,black,transparent 90%);animation:gridMove 18s linear infinite}
+.star{position:fixed;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.5;animation:starMove linear infinite;z-index:-1}
+nav{position:fixed;z-index:50;top:18px;left:50%;transform:translateX(-50%);width:min(1180px,92%);padding:13px 17px;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:rgba(3,10,25,.62);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 15px 50px rgba(0,0,0,.25)}
+.brand{font-weight:900;letter-spacing:.7px}.brand b{color:var(--cyan)}
+nav a{color:#aebfda;text-decoration:none;font-size:13px;margin-left:20px;transition:.25s}nav a:hover{color:white}
+section{min-height:100vh;padding:130px 7% 90px;display:flex;align-items:center;position:relative}
+.wrap{width:min(1180px,100%);margin:auto}.hero{min-height:100vh}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.kicker{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:3px;text-transform:uppercase}
+h1{font-size:clamp(54px,7vw,100px);line-height:.88;letter-spacing:-5px;margin:17px 0 25px}
+.grad{background:linear-gradient(100deg,#fff 10%,#59eaff 45%,#a78bfa 85%);-webkit-background-clip:text;color:transparent}
+.lead{font-size:19px;color:#a9bcd6;line-height:1.7;max-width:650px}
+.actions{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}.btn{padding:14px 20px;border-radius:13px;text-decoration:none;font-weight:800;border:1px solid rgba(255,255,255,.13);transition:.3s}.btn:hover{transform:translateY(-5px) scale(1.02)}.main-btn{background:linear-gradient(135deg,#277cff,#7c4dff);color:#fff;box-shadow:0 14px 45px rgba(60,110,255,.28)}.ghost{color:#dce9ff;background:rgba(255,255,255,.04)}
+.hero-art{height:560px;position:relative;display:grid;place-items:center}
+.halo{position:absolute;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(55,225,255,.16),transparent 66%);box-shadow:0 0 120px rgba(49,130,255,.15);animation:halo 5s ease-in-out infinite}
+.monitor{position:relative;width:min(560px,90vw);transform:perspective(1000px) rotateY(-7deg) rotateX(3deg);animation:monitorFloat 6s ease-in-out infinite;filter:drop-shadow(0 35px 55px rgba(0,0,0,.55))}
+.monitor-frame{background:linear-gradient(145deg,#263b59,#0d1a30);padding:11px;border-radius:22px;border:1px solid #496887}
+.monitor-screen{height:350px;border-radius:12px;overflow:hidden;background:#061426;border:1px solid #0e3159;position:relative}
+.screen-head{height:52px;border-bottom:1px solid #17365c;display:flex;align-items:center;justify-content:space-between;padding:0 18px}.traffic{display:flex;gap:6px}.traffic i{width:8px;height:8px;border-radius:50%;background:#607b9d}
+.screen-title{font-weight:800}.avatar{width:29px;height:29px;border-radius:50%;display:grid;place-items:center;background:#246bdf}
+.app{display:grid;grid-template-columns:125px 1fr;height:calc(100% - 52px)}.sidebar{border-right:1px solid #17365c;padding:18px 10px;color:#7892b5;font-size:11px}.sidebar b{display:block;color:#fff;padding:9px;background:#12315a;border-radius:8px;margin-bottom:8px}.sidebar span{display:block;padding:8px}
+.panel{padding:18px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:#0c2444;border:1px solid #173d68;border-radius:10px;padding:11px}.stat small{color:#7592b7}.stat strong{display:block;font-size:20px;margin-top:3px}.stat:nth-child(2){background:#0a3b35}.stat:nth-child(3){background:#3a2a0d}
+.data{display:grid;grid-template-columns:1.3fr .7fr;gap:10px;margin-top:10px}.chart,.orders{background:#0a1f3c;border-radius:11px;border:1px solid #153b65;padding:12px}.bars{height:145px;display:flex;align-items:end;gap:7px}.bars i{flex:1;border-radius:5px 5px 1px 1px;background:linear-gradient(#4ff0ff,#3d6cff);animation:bars 1.8s ease-in-out infinite alternate}.bars i:nth-child(1){height:35%}.bars i:nth-child(2){height:48%}.bars i:nth-child(3){height:42%}.bars i:nth-child(4){height:68%}.bars i:nth-child(5){height:92%}.bars i:nth-child(6){height:72%}.orders h4{margin:0 0 10px}.line{height:8px;background:#284669;border-radius:10px;margin:10px 0}.line:nth-child(2){width:90%}.line:nth-child(3){width:70%}.line:nth-child(4){width:82%}.line:nth-child(5){width:55%}
+.stand{width:100px;height:22px;background:linear-gradient(#425a78,#18283e);margin:auto;border-radius:0 0 20px 20px}.keyboard{width:70%;height:12px;background:#152944;margin:auto;border-radius:0 0 8px 8px}
+.float{position:absolute;width:65px;height:65px;border-radius:18px;background:rgba(8,25,51,.8);border:1px solid rgba(79,240,255,.3);display:grid;place-items:center;font-size:29px;box-shadow:0 15px 35px rgba(0,0,0,.3);animation:float 5s ease-in-out infinite}.f1{top:9%;left:4%}.f2{top:18%;right:2%;animation-delay:-1.5s}.f3{bottom:14%;left:8%;animation-delay:-2.5s}.f4{bottom:8%;right:9%;animation-delay:-3.5s}
+.section-title{font-size:clamp(40px,5vw,67px);letter-spacing:-3px;margin:10px 0 14px}.sub{color:#9eb3cf;line-height:1.7;max-width:720px}
+.reveal{opacity:0;transform:translateY(80px) scale(.96);filter:blur(7px);transition:1s cubic-bezier(.2,.75,.2,1)}.reveal.active{opacity:1;transform:none;filter:none}
+.section-number{position:absolute;right:7%;top:130px;font-size:90px;font-weight:900;color:rgba(255,255,255,.035)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:45px}.card{padding:28px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border-radius:23px;position:relative;overflow:hidden;transition:.45s}.card:before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(79,240,255,.12);filter:blur(20px);right:-50px;top:-50px}.card:hover{transform:translateY(-12px) rotateX(3deg);border-color:rgba(79,240,255,.42);box-shadow:0 25px 60px rgba(0,0,0,.25)}.card-icon{font-size:38px;margin-bottom:17px}.card h3{font-size:20px;margin:0 0 8px}.card p{color:#91a8c6;line-height:1.6;margin:0}
+.problem-visual{margin-top:45px;display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}.old-screen,.new-screen{min-height:350px;border-radius:25px;padding:20px;border:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden}.old-screen{background:#171b22}.new-screen{background:linear-gradient(145deg,#0b2851,#08172d);box-shadow:0 25px 70px rgba(0,90,255,.16)}.old-screen h3,.new-screen h3{margin-top:0}.paper{width:85%;height:210px;margin:25px auto;background:#ddd8c9;color:#252525;padding:20px;transform:rotate(-3deg);box-shadow:0 20px 30px #0008}.paper div{height:10px;background:#9b978c;margin:13px 0}.paper div:nth-child(2){width:70%}.paper div:nth-child(4){width:55%}.chaos{position:absolute;font-size:35px;animation:shake 1s infinite alternate}.chaos.a{right:12%;top:28%}.chaos.b{left:9%;bottom:15%}
+.new-ui{display:grid;grid-template-columns:1fr 1fr;gap:10px}.new-ui div{padding:18px;background:#10315b;border-radius:14px;text-align:center}.new-ui b{display:block;font-size:28px;color:#4ff0ff}.scan{position:absolute;left:0;right:0;height:2px;background:#4ff0ff;box-shadow:0 0 18px #4ff0ff;animation:scan 3s linear infinite}
+.arch-wrap{margin-top:45px;padding:40px 20px;border:1px solid rgba(79,240,255,.16);border-radius:28px;background:linear-gradient(145deg,rgba(24,94,190,.1),rgba(255,255,255,.02));overflow:hidden}
+.arch{display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr 70px 1fr;align-items:center}.node{min-height:170px;padding:18px;text-align:center;border:1px solid #294c75;background:#071a33;border-radius:22px;display:grid;place-items:center;transition:.4s}.node:hover{transform:translateY(-12px) scale(1.04);border-color:#4ff0ff;box-shadow:0 0 45px rgba(79,240,255,.14)}.node-icon{font-size:46px}.node p{color:#8da5c5;font-size:12px;line-height:1.5}.arrow{height:3px;background:linear-gradient(90deg,transparent,#4ff0ff,transparent);position:relative}.arrow:after{content:"";position:absolute;right:4px;top:50%;border:7px solid transparent;border-left-color:#4ff0ff;transform:translateY(-50%);animation:arrowPulse 1s infinite}
+.workflow{margin-top:45px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}.step{padding:25px;border-radius:20px;background:#091b35;border:1px solid #1d3d64;position:relative}.step-number{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#277cff,#8b5cf6);font-weight:900;margin-bottom:18px}.step p{color:#8fa8c7;line-height:1.55;font-size:14px}.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:45px}.benefit{padding:25px;border-radius:21px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);transition:.4s}.benefit:hover{transform:translateY(-9px);background:rgba(50,130,255,.09)}.benefit .big{font-size:35px}.benefit h3{margin:10px 0 6px}.benefit p{color:#91a8c6;line-height:1.5}
+.future{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:45px}.future .card{min-height:190px}
+.final{text-align:center}.final-box{padding:65px 25px;border:1px solid rgba(79,240,255,.24);border-radius:35px;background:radial-gradient(circle at 50% 0,rgba(42,126,255,.25),transparent 55%),rgba(255,255,255,.035);box-shadow:0 30px 90px rgba(0,0,0,.3)}.final-box .section-title{max-width:850px;margin:15px auto}.final-box p{max-width:650px;margin:auto;color:#9eb3cf;line-height:1.7}
+footer{text-align:center;padding:28px;color:#60799e;border-top:1px solid rgba(255,255,255,.08);font-size:12px}
+@keyframes gridMove{to{background-position:0 60px,60px 0}}@keyframes starMove{from{transform:translateY(105vh);opacity:0}20%{opacity:.6}to{transform:translateY(-10vh);opacity:0}}@keyframes halo{50%{transform:scale(1.13);opacity:.75}}@keyframes monitorFloat{0%,100%{transform:perspective(1000px) rotateY(-7deg) rotateX(3deg) translateY(0)}50%{transform:perspective(1000px) rotateY(4deg) rotateX(1deg) translateY(-14px)}}@keyframes bars{to{filter:brightness(1.4);transform:scaleY(1.05)}}@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-17px) rotate(4deg)}}@keyframes shake{to{transform:rotate(7deg) translateY(-5px)}}@keyframes scan{from{top:0}to{top:100%}}@keyframes arrowPulse{50%{filter:drop-shadow(0 0 8px #4ff0ff)}} 
+@media(max-width:950px){nav .links{display:none}.hero-grid,.problem-visual{grid-template-columns:1fr}.hero-art{height:470px}.cards,.benefits,.future{grid-template-columns:1fr 1fr}.arch{grid-template-columns:1fr}.arrow{width:3px;height:45px;margin:auto;background:linear-gradient(180deg,transparent,#4ff0ff,transparent)}.arrow:after{right:auto;left:50%;top:auto;bottom:3px;border-left-color:transparent;border-top-color:#4ff0ff;transform:translateX(-50%)}}@media(max-width:600px){section{padding-left:5%;padding-right:5%}.cards,.benefits,.future,.workflow{grid-template-columns:1fr}.hero-art{height:400px}.monitor-screen{height:270px}.app{grid-template-columns:85px 1fr}.sidebar{font-size:9px}.data{grid-template-columns:1fr}.orders{display:none}h1{letter-spacing:-3px}.section-number{display:none}}
+</style>
+</head>
+<body>
+<div id="space"></div><div id="grid"></div>
+<nav><div class="brand">SMART <b>BUSINESS</b></div><div class="links"><a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#architecture">Architecture</a><a href="#workflow">Workflow</a><a href="#future">Future</a></div></nav>
+
+<section class="hero">
+<div class="wrap hero-grid">
+<div class="reveal">
+<div class="kicker">Software Architecture • Interactive Presentation</div>
+<h1>SMART<br><span class="grad">BUSINESS</span><br>SYSTEM</h1>
+<p class="lead">A professional digital solution that transforms manual business management into a fast, organized and scalable system.</p>
+<div class="actions"><a class="btn main-btn" href="#problem">Start the experience ↓</a><a class="btn ghost" href="#architecture">See the architecture</a></div>
+</div>
+<div class="hero-art reveal">
+<div class="halo"></div>
+<div class="float f1">👥</div><div class="float f2">📦</div><div class="float f3">📊</div><div class="float f4">🔐</div>
+<div class="monitor">
+<div class="monitor-frame"><div class="monitor-screen">
+<div class="screen-head"><div class="traffic"><i></i><i></i><i></i></div><span class="screen-title">Business Dashboard</span><span class="avatar">👤</span></div>
+<div class="app"><div class="sidebar"><b>⌂ Dashboard</b><span>♙ Customers</span><span>▣ Products</span><span>🛒 Sales</span><span>▤ Reports</span><span>⚙ Settings</span></div>
+<div class="panel"><div class="stats"><div class="stat"><small>Customers</small><strong>128</strong></div><div class="stat"><small>Products</small><strong>56</strong></div><div class="stat"><small>Sales</small><strong>$8.4K</strong></div></div>
+<div class="data"><div class="chart"><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="orders"><h4>Recent activity</h4><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div></div>
+</div></div><div class="stand"></div><div class="keyboard"></div></div>
+</div>
+</div>
+</section>
+
+<section id="problem"><div class="wrap reveal"><span class="kicker">01 • THE PROBLEM</span><h2 class="section-title">Small businesses can become <span class="grad">disorganized.</span></h2><p class="sub">Manual records, spreadsheets and disconnected information make everyday work slower and increase the possibility of mistakes.</p>
+<div class="problem-visual">
+<div class="old-screen"><h3>❌ Before the system</h3><div class="paper"><b>Sales notebook</b><div></div><div></div><div></div><div></div><div></div></div><span class="chaos a">📄</span><span class="chaos b">⚠️</span></div>
+<div class="new-screen"><span class="scan"></span><h3>⚠️ What can go wrong?</h3><div class="cards" style="grid-template-columns:1fr 1fr;margin-top:20px"><div class="card"><div class="card-icon">🗂️</div><h3>Lost data</h3><p>Information becomes difficult to find.</p></div><div class="card"><div class="card-icon">⏱️</div><h3>Slow work</h3><p>Manual tasks consume time.</p></div></div></div>
+</div></div></section>
+
+<section id="solution"><div class="wrap reveal"><span class="kicker">02 • THE SOLUTION</span><h2 class="section-title">One platform to <span class="grad">control everything.</span></h2><p class="sub">The Smart Business System connects the essential operations of a small business in one application.</p>
+<div class="cards"><div class="card"><div class="card-icon">👥</div><h3>Customer Management</h3><p>Register, search and update customer information quickly.</p></div><div class="card"><div class="card-icon">📦</div><h3>Products & Inventory</h3><p>Know what products are available and keep stock updated.</p></div><div class="card"><div class="card-icon">🛒</div><h3>Sales Management</h3><p>Record sales and keep every transaction organized.</p></div><div class="card"><div class="card-icon">🗄️</div><h3>Central Database</h3><p>Store important business information in one structured place.</p></div><div class="card"><div class="card-icon">📈</div><h3>Reports</h3><p>Turn business information into useful visual reports.</p></div><div class="card"><div class="card-icon">🛡️</div><h3>Security</h3><p>Protect information and control access to the system.</p></div></div></div></section>
+
+<section id="architecture"><div class="wrap reveal"><span class="kicker">03 • SOFTWARE ARCHITECTURE</span><h2 class="section-title">Inside the <span class="grad">system.</span></h2><p class="sub">Every component has a role. Together they create a complete flow from the user to the stored information.</p>
+<div class="arch-wrap"><div class="arch">
+<div class="node"><div><div class="node-icon">👤</div><h3>Client</h3><p>The user interacts with the application.</p></div></div><div class="arrow"></div>
+<div class="node"><div><div class="node-icon">🖥️</div><h3>Interface</h3><p>The visual layer receives user actions.</p></div></div><div class="arrow"></div>
+<div class="node"><div><div class="node-icon">⚙️</div><h3>Server</h3><p>Processes requests and business logic.</p></div></div><div class="arrow"></div>
+<div class="node"><div><div class="node-icon">🗄️</div><h3>Database</h3><p>Stores information safely and consistently.</p></div></div>
+</div></div></div></section>
+
+<section id="workflow"><div class="wrap reveal"><span class="kicker">04 • SMART WORKFLOW</span><h2 class="section-title">Watch a sale <span class="grad">travel through the system.</span></h2><p class="sub">The architecture becomes useful when all its parts work together.</p>
+<div class="workflow"><div class="step"><div class="step-number">01</div><h3>🛒 Purchase</h3><p>The customer chooses a product and creates a sale.</p></div><div class="step"><div class="step-number">02</div><h3>⚙️ Processing</h3><p>The server validates the request and applies business rules.</p></div><div class="step"><div class="step-number">03</div><h3>🗄️ Storage</h3><p>The database saves the sale and updates inventory.</p></div><div class="step"><div class="step-number">04</div><h3>📊 Result</h3><p>The dashboard immediately shows updated information.</p></div></div></div></section>
+
+<section><div class="wrap reveal"><span class="kicker">05 • BENEFITS</span><h2 class="section-title">Designed for <span class="grad">better business.</span></h2>
+<div class="benefits"><div class="benefit"><div class="big">⚡</div><h3>Faster</h3><p>Automates repetitive tasks and saves time.</p></div><div class="benefit"><div class="big">🗂️</div><h3>Organized</h3><p>Keeps information available in one place.</p></div><div class="benefit"><div class="big">🛡️</div><h3>Secure</h3><p>Helps protect customer and business data.</p></div><div class="benefit"><div class="big">📈</div><h3>Scalable</h3><p>Can grow with the business.</p></div></div></div></section>
+
+<section id="future"><div class="wrap reveal"><span class="kicker">06 • FUTURE FEATURES</span><h2 class="section-title">The system can become <span class="grad">even smarter.</span></h2>
+<div class="future"><div class="card"><div class="card-icon">🔔</div><h3>Smart Notifications</h3><p>Alerts for low stock, orders and important events.</p></div><div class="card"><div class="card-icon">📑</div><h3>Automatic Reports</h3><p>Generate reports without manual calculations.</p></div><div class="card"><div class="card-icon">💳</div><h3>Online Payments</h3><p>Let customers pay securely from anywhere.</p></div><div class="card"><div class="card-icon">🔗</div><h3>More Integrations</h3><p>Connect with accounting, e-commerce and other services.</p></div><div class="card"><div class="card-icon">📱</div><h3>Mobile App</h3><p>Manage the business from a phone or tablet.</p></div><div class="card"><div class="card-icon">🤖</div><h3>AI Analytics</h3><p>Use intelligent analysis to discover business trends.</p></div></div></div></section>
+
+<section class="final"><div class="wrap"><div class="final-box reveal"><span class="kicker">SMART BUSINESS SYSTEM</span><h2 class="section-title">From manual work to <span class="grad">smart management.</span></h2><p>A modern architecture can help a small business work faster, protect information and make better decisions.</p><div class="actions" style="justify-content:center"><a class="btn main-btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↟ Back to the beginning</a></div></div></div></section>
+<footer>Smart Business System • Software Development • Technology Speaking Activity</footer>
+
+<script>
+for(let i=0;i<65;i++){const s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.animationDuration=(8+Math.random()*18)+'s';s.style.animationDelay=(-Math.random()*20)+'s';s.style.opacity=.2+Math.random()*.65;document.body.appendChild(s)}
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active')}),{threshold:.13});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+const sections=[...document.querySelectorAll('section')];
+let last=window.scrollY;
+window.addEventListener('scroll',()=>{const down=window.scrollY>last;last=window.scrollY;document.querySelectorAll('.hero-art .float').forEach((el,i)=>{el.style.transform=`translateY(${Math.sin(Date.now()/900+i)*8}px)`})});
+</script>
+</body>
+</html>
